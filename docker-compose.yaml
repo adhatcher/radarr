@@ -10,7 +10,8 @@ services:
       - TZ=Europe/London
     volumes:
       - nzbget_data:/config
-      - /Volumes/Public/Radarr:/downloads
+      #- /Volumes/Public/Radarr:/downloads
+      - radar_downloads:/downloads
     ports:
       - 6789:6789
     restart: unless-stopped
@@ -28,7 +29,8 @@ services:
       - TZ=Europe/London
     volumes:
       - hydra2_data:/config
-      - /Volumes/Public/Radarr:/downloads
+      #- /Volumes/Public/Radarr:/downloads
+      - radar_downloads:/downloads
     ports:
       - 5076:5076
     restart: unless-stopped
@@ -48,7 +50,8 @@ services:
     volumes:
       - radarr_data:/config
       - /Volumes/Public/Shared Videos/PlexMedia/Movies:/movies
-      - /Volumes/Public/Radarr:/downloads
+      #- /Volumes/Public/Radarr:/downloads
+      - radar_downloads:/downloads
     ports:
       - 7878:7878
     networks:
@@ -59,5 +62,6 @@ volumes:
   nzbget_data:
   hydra2_data:
   radarr_data:
+  radar_downloads:
 networks:
   radarr_network:
