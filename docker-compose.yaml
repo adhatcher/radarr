@@ -1,7 +1,43 @@
 ---
 version: "2"
 services:
+  nzbget:
+    image: linuxserver/nzbget
+    container_name: nzbget
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - nzbget_data:/config
+      - /Volumes/Public/Radarr:/downloads
+    ports:
+      - 6789:6789
+    restart: unless-stopped
+    networks:
+      - radarr_network
+
+  hydra2:
+    depends_on:
+      - nzbget
+    image: linuxserver/hydra2
+    container_name: hydra2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - hydra2_data:/config
+      - /Volumes/Public/Radarr:/downloads
+    ports:
+      - 5076:5076
+    restart: unless-stopped
+    networks:
+      - radarr_network
+ 
   radarr:
+    depends_on:
+      - nzbget
     image: linuxserver/radarr
     container_name: radarr
     environment:
@@ -11,8 +47,8 @@ services:
       - UMASK_SET=022 #optional
     volumes:
       - radarr_data:/config
-      - radarr_movies:/movies
-      - radarr_client:/downloads
+      - /Volumes/Public/Shared Videos/PlexMedia/Movies:/movies
+      - /Volumes/Public/Radarr:/downloads
     ports:
       - 7878:7878
     networks:
@@ -20,8 +56,8 @@ services:
     restart: unless-stopped
 
 volumes:
+  nzbget_data:
+  hydra2_data:
   radarr_data:
-  radarr_movies:
-  radarr_client:
 networks:
   radarr_network:
