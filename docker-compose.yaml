@@ -59,9 +59,9 @@ services:
     restart: unless-stopped
 
 volumes:
-  radarr_nzbget_data:
-  radarr_hydra2_data:
-  radarr_radarr_data:
-  radarr_radar_downloads:
+  nzbget_data:
+  hydra2_data:
+  radarr_data:
+  radar_downloads:
 networks:
   radarr_network:
