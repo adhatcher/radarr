@@ -23,5 +23,5 @@ volumes:
   radarr_data:
   radarr_movies:
   radarr_client:
-network:
+networks:
   radarr_network:
