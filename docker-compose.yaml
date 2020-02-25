@@ -2,7 +2,7 @@
 version: "2"
 services:
   radarr:
-    image: linuxserver/radarr:latest
+    image: linuxserver/radarr
     container_name: radarr
     environment:
       - PUID=1000
@@ -18,7 +18,7 @@ services:
     networks:
       - radarr_network
     restart: unless-stopped
-    
+
 volumes:
   radarr_data:
   radarr_movies:
