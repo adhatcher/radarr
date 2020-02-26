@@ -10,7 +10,7 @@ services:
       - TZ=Europe/London
     volumes:
       - nzbget_data:/config
-      - /Volumes/Public/downloads:/downloads
+      - /Volumes/MovieBackup/downloads:/downloads
       #- radar_downloads:/downloads
     ports:
       - 6789:6789
@@ -29,7 +29,7 @@ services:
       - TZ=Europe/London
     volumes:
       - hydra2_data:/config
-      - /Volumes/Public/downloads:/downloads
+      - /Volumes/MovieBackup/downloads:/downloads
       #- radar_downloads:/downloads
     ports:
       - 5076:5076
@@ -50,7 +50,7 @@ services:
     volumes:
       - radarr_data:/config
       - /Volumes/Public/Shared Videos/PlexMedia/Movies:/movies
-      - /Volumes/Public/downloads:/downloads
+      - /Volumes/MovieBackup/downloads:/downloads
       #- radar_downloads:/downloads
     ports:
       - 7878:7878
